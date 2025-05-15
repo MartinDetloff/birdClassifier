@@ -7,6 +7,7 @@ import numpy as np
 import kagglehub
 
 
+
 # Method to print out the class labels
 def print_class_labels(dataset, isTest):
     if isTest:
@@ -23,9 +24,6 @@ def print_class_labels(dataset, isTest):
 
 if __name__ == '__main__':
     print("Starting Main... ")
-
-    print("TensorFlow version:", tf.__version__)
-    print("GPUs available:", tf.config.list_physical_devices('GPU'))
 
     # Use kaggle's API to download the dataset from the website
     path = kagglehub.dataset_download("kedarsai/bird-species-classification-220-categories")
@@ -70,7 +68,7 @@ if __name__ == '__main__':
     resnet_model.summary()
 
     resnet_model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    epochs = 10
+    epochs = 20
     history = resnet_model.fit(train_dataset, epochs=epochs, validation_data=test_dataset)
 
     resnet_model.save('my_model.keras')
